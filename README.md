@@ -1,30 +1,16 @@
 # ProjetoFP
 Reimplementation of  Rampage
-# Projeto FP
 ## FPRO/MIEIC, 2021/22
 ## Miguel Garrido (up202108889)
-## 1MIEICXX
+## 1L.IEIC03
 
 ### Objetivo
 
-1. Criar um clone do clássico Rampage (jogo da Atari 2600/VCS) em Pygame...
-
-2. Em alternativa... do clássico x em Pygame.
+1. Criar um clone do clássico Rampage (jogo da Atari 2600/VCS) em Pygame.
 
 ### Repositório de código
 
 1) Link para o repositório do GitHub: https://github.com/mj-050602/ProjetoFP
-
-2) Adicionar, como colaborador com permissão de leitura (*role read*):
-
-- https://github.com/AfonsoSalgadoSousa
-- https://github.com/jlopes60
-- https://github.com/nmacedo
-- https://github.com/rpmcruz
-- https://github.com/eSoares
-- https://github.com/pbv
-- https://github.com/imdcode
-- https://github.com/acoelho-fe-up-pt
 
 ### Descrição
 
