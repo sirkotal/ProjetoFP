@@ -1,8 +1,8 @@
 # ProjetoFP
 Reimplementation of  Rampage
-## FPRO/MIEIC, 2021/22
+## FPRO/L.EIC, 2021/22
 ## Miguel Garrido (up202108889)
-## 1L.IEIC03
+## 1L.EIC03
 
 ### Objetivo
 
