@@ -1,0 +1,102 @@
+import pygame
+
+resolution = (800,600)
+
+pygame.init()
+
+screen = pygame.display.set_mode(resolution)
+
+background = pygame.image.load("city_v2.png")
+pygame.display.flip()
+
+george_idle = pygame.image.load("george_idle.png")
+george_x = 0
+george_y = 200
+
+v1 = 0
+v2 = 0
+level1 = [
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000001111000000000",
+    "0000000000001111000000000",
+    "0000001111001111000000000",
+    "0000001111001111000000000",
+    "0000001111001111000000011",
+    "0000001111001111000000111",
+    "0000001111001111000000111",
+    "0000001111001111000000111",
+    "0000001111001111000001111",
+    "0000001111001111000001111",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+]
+
+
+running = True
+is_in_building = True
+clock = pygame.time.Clock()
+left_key = right_key = False
+
+while running:
+    
+    #1 input/
+    jump_key = False
+    hit_key = False
+    for ev in pygame.event.get():
+        if ev.type == pygame.QUIT:
+            running = False
+        elif ev.type == pygame.KEYDOWN:
+            if ev.key == pygame.K_ESCAPE:
+                running = False
+            elif ev.key == pygame.K_LEFT:
+                left_key = True
+            elif ev.key == pygame.K_RIGHT:
+                right_key = True
+            elif ev.key == pygame.K_SPACE:
+                jump_key = True
+            elif ev.key == pygame.K_RETURN:
+                hit_key = True
+        elif ev.type == pygame.KEYUP:
+            if ev.key == pygame.K_LEFT:
+                left_key = False
+            elif ev.key == pygame.K_RIGHT:
+                right_key = False
+            elif ev.key == pygame.K_RETURN:
+                hit_key = False
+    
+    
+    
+    #2 physics, enemies...
+    frame_rate = clock.tick()
+    if right_key:
+        v1 += 0.4
+    elif left_key:
+        v1 -= 0.4
+    else:
+        v1 = 0
+    
+    if jump_key and is_in_building:
+    
+    #3 graphics
+    screen.blit(background,(0,0))
+    screen.blit(george_idle,(0,475))
+    pygame.display.flip()
+    
+    for row in range(len(level1)):
+        for column in range(len(level1[row])):
+            if level1[row][column] == "1":
+                pygame.draw.rect(background,pygame.Color(255,182,193),(column*32,row*32,32,32))
+
+
+
+
+
+        
+        
+pygame.quit()
