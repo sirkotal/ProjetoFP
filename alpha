@@ -10,6 +10,8 @@ background = pygame.image.load("city_v2.png")
 pygame.display.flip()
 
 george_idle = pygame.image.load("george_idle.png")
+great_ape = pygame.image.load("great_ape.png")
+assault_theme = pygame.mixer.music.load("Great Ape Assault.mp3")
 george_x = 0
 george_y = 200
 
@@ -41,7 +43,7 @@ level1 = [
 running = True
 is_in_building = True
 clock = pygame.time.Clock()
-left_key = right_key = False
+left_key = right_key = up_key = down_key = False
 
 while running:
     
@@ -58,8 +60,15 @@ while running:
                 left_key = True
             elif ev.key == pygame.K_RIGHT:
                 right_key = True
+            elif ev.key == pygame.K_UP:
+                up_key == True
+            elif ev.key == pygame.K_DOWN:
+                down_key == True
             elif ev.key == pygame.K_SPACE:
-                jump_key = True
+                if jump_key == False:
+                    jump_key == True
+                elif jump_key == True:
+                    jump_key == False
             elif ev.key == pygame.K_RETURN:
                 hit_key = True
         elif ev.type == pygame.KEYUP:
@@ -67,6 +76,10 @@ while running:
                 left_key = False
             elif ev.key == pygame.K_RIGHT:
                 right_key = False
+            elif ev.key == pygame.K_UP:
+                up_key == False
+            elif ev.key == pygame.K_DOWN:
+                down_key == False
             elif ev.key == pygame.K_RETURN:
                 hit_key = False
     
@@ -82,6 +95,18 @@ while running:
         v1 = 0
     
     if jump_key and is_in_building:
+        if up_key:
+            v2 -= 0.4
+        elif down_key:
+            v2 += 0.4
+        else:
+            v2 == 0
+    
+    george_x += v1*frame_rate
+    george_y += v2*frame_rate
+    previous_y = george_y
+    
+    
     
     #3 graphics
     screen.blit(background,(0,0))
