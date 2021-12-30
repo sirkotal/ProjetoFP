@@ -14,6 +14,7 @@ pygame.display.flip()
 george_idle = pygame.image.load("george_idle.png")
 great_ape = pygame.image.load("great_ape.png")
 assault_theme = pygame.mixer.music.load("Great Ape Assault.mp3")
+# pygame.mixer.music.play(loops=-1)
 george_x = 0
 george_y = 475
 
@@ -48,7 +49,7 @@ clock = pygame.time.Clock()
 left_key = right_key = up_key = down_key = False
 
 while running:
-    
+
     #1 input/
     jump_key = False
     hit_key = False
@@ -114,8 +115,8 @@ while running:
     if george_x < -8:
         george_x = -8
         v1 = 0
-    elif george_x > 800:
-        george_x = 800
+    if george_x > 725:
+        george_x = 725
         v1 = 0
         
         
