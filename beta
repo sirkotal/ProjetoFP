@@ -113,7 +113,7 @@ while running:
         elif down_key:
             v2 += 0.4
         else:
-            v2 == 0
+            v2 = 0
     
     george_x += v1*frame_rate
     george_y += v2*frame_rate
