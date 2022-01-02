@@ -91,9 +91,9 @@ while running:
     #2 physics, enemies...
     frame_rate = clock.tick()
     if right_key:
-        v1 += 0.01
+        v1 = +0.1
     elif left_key:
-        v1 -= 0.01
+        v1 = -0.1
     else:
         v1 = 0
         
@@ -104,9 +104,9 @@ while running:
             if level1[row][column] == "2":
                 if george_x >= column*32-40 and george_x <= column*32-2:
                     if up_key:
-                        v2 = -0.1
+                        v2 = -0.08
                     elif down_key:
-                        v2 = +0.1
+                        v2 = +0.08
                     else:
                         v2 = 0
                 else:
