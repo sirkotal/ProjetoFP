@@ -138,7 +138,10 @@ while running:
         george_x = 725
         v1 = 0
         
-        
+    if v1 > 0:
+        george_idle = pygame.image.load("george_idle2.png")
+    elif v1 < 0:
+        george_idle = pygame.image.load("george_idle.png")
     
     
     
