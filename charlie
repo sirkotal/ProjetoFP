@@ -88,7 +88,7 @@ while running:
     
     
     
-    #2 physics, enemies...
+    #2 movement
     frame_rate = clock.tick()
     if right_key:
         v1 = +0.1
@@ -123,8 +123,7 @@ while running:
     
     
     if george_y != 475:
-        left_key = False
-        right_key = False
+        george_x -= v1*frame_rate
     if george_y > 475:
         george_y = 475
         v2 = 0
@@ -138,14 +137,26 @@ while running:
         george_x = 725
         v1 = 0
         
-    if v1 > 0:
+    if v1 > 0 and george_y == 475:
         george_idle = pygame.image.load("george_idle2.png")
-    elif v1 < 0:
+    elif v1 < 0 and george_y == 475:
         george_idle = pygame.image.load("george_idle.png")
+    elif v2 != 0:
+        george_idle = pygame.image.load("george_climb.png")
+    
+    #3 destruction
+      # for row in range(len(level1)):
+      #   for column in range(len(level1[row])):
+      #       if level1[row][column] == "2":
+      #           if george_x >= column*32-40 and george_x <= column*32-2:
+      #               if hit_key:
+                        
     
     
     
-    #3 graphics
+    #4 enemies
+    
+    #5 graphics
     screen.blit(background,(0,0))
     screen.blit(george_idle,(int(george_x),int(george_y)))
     pygame.display.flip()
