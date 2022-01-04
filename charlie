@@ -136,13 +136,8 @@ while running:
     if george_x > 725:
         george_x = 725
         v1 = 0
-        
-    if v1 > 0 and george_y == 475:
-        george_idle = pygame.image.load("george_idle2.png")
-    elif v1 < 0 and george_y == 475:
-        george_idle = pygame.image.load("george_idle.png")
-    elif v2 != 0:
-        george_idle = pygame.image.load("george_climb.png")
+    
+    
     
     #3 destruction
       # for row in range(len(level1)):
@@ -165,9 +160,26 @@ while running:
         for column in range(len(level1[row])):
             if level1[row][column] == "1" or level1[row][column] == "2":
                 pygame.draw.rect(background,pygame.Color(255,182,193),(column*32,row*32,32,32))
-
-
-
+    
+    # if v1 > 0 and george_y == 475:
+    #     george_idle = pygame.image.load("george_idle2.png")
+    # elif v1 < 0 and george_y == 475:
+    #     george_idle = pygame.image.load("george_idle.png")
+    # elif v2 != 0:
+    #     george_idle = pygame.image.load("george_climb.png")
+    
+    
+    if v1 > 0 and george_y == 475:
+        counter = 1
+        george_idle = pygame.image.load("george_idle2.png")
+    elif v1 < 0 and george_y == 475:
+        counter = -1
+        george_idle = pygame.image.load("george_idle.png")
+    elif v2 != 0:
+        if counter == 1:
+            george_idle = pygame.image.load("george_climb.png")
+        elif counter == -1:
+            george_idle = pygame.image.load("george_climb2.png")
 
 
         
