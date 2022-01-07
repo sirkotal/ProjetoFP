@@ -12,6 +12,7 @@ background = pygame.image.load("city_v2.png")
 pygame.display.flip()
 
 george_idle = pygame.image.load("george_idle2.png")
+tank = pygame.image.load("tank.png")
 great_ape = pygame.image.load("great_ape.png")
 assault_theme = pygame.mixer.music.load("Great Ape Assault.mp3")
 # pygame.mixer.music.play(loops=-1)
@@ -50,8 +51,7 @@ left_key = right_key = up_key = down_key = False
 
 while running:
 
-    #1 input/
-    climb_key = False
+    #1 input
     hit_key = False
     for ev in pygame.event.get():
         if ev.type == pygame.QUIT:
@@ -68,11 +68,6 @@ while running:
             elif ev.key == pygame.K_DOWN:
                 down_key = True
             elif ev.key == pygame.K_SPACE:
-                if climb_key == False:
-                    climb_key == True
-                elif climb_key == True:
-                    climb_key == False
-            elif ev.key == pygame.K_RETURN:
                 hit_key = True
         elif ev.type == pygame.KEYUP:
             if ev.key == pygame.K_LEFT:
@@ -83,8 +78,6 @@ while running:
                 up_key = False
             elif ev.key == pygame.K_DOWN:
                 down_key = False
-            elif ev.key == pygame.K_RETURN:
-                hit_key = False
     
     
     
@@ -140,7 +133,7 @@ while running:
     
     
     #3 destruction
-      # for row in range(len(level1)):
+    # for row in range(len(level1)):
       #   for column in range(len(level1[row])):
       #       if level1[row][column] == "2":
       #           if george_x >= column*32-40 and george_x <= column*32-2:
@@ -148,26 +141,21 @@ while running:
                         
     
     
-    
     #4 enemies
+    tank_x = -40
+    tank_y = 550
+    
     
     #5 graphics
     screen.blit(background,(0,0))
     screen.blit(george_idle,(int(george_x),int(george_y)))
+    screen.blit(tank,(tank_x,tank_y))
     pygame.display.flip()
     
     for row in range(len(level1)):
         for column in range(len(level1[row])):
             if level1[row][column] == "1" or level1[row][column] == "2":
                 pygame.draw.rect(background,pygame.Color(255,182,193),(column*32,row*32,32,32))
-    
-    # if v1 > 0 and george_y == 475:
-    #     george_idle = pygame.image.load("george_idle2.png")
-    # elif v1 < 0 and george_y == 475:
-    #     george_idle = pygame.image.load("george_idle.png")
-    # elif v2 != 0:
-    #     george_idle = pygame.image.load("george_climb.png")
-    
     
     if v1 > 0 and george_y == 475:
         counter = 1
@@ -182,6 +170,5 @@ while running:
             george_idle = pygame.image.load("george_climb2.png")
 
 
-        
-        
+          
 pygame.quit()
