@@ -1,1 +1,1 @@
-*.roff linguist-language=Python
+*.python linguist-detectable=true 
