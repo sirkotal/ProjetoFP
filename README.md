@@ -24,6 +24,7 @@ Reimplementation of  Rampage
 ### Pacotes
 
 - Pygame
+- random
 
 ### Tarefas
 
