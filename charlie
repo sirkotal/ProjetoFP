@@ -1,4 +1,5 @@
 import pygame
+import random
 
 resolution = (800,600)
 hitbox = 64
@@ -14,6 +15,7 @@ pygame.display.flip()
 george_idle = pygame.image.load("george_idle2.png")
 tank = pygame.image.load("tank.png")
 chopper = pygame.image.load("helicopter.png")
+bullet = pygame.image.load("bullet.png")
 
 great_ape = pygame.image.load("great_ape.png")
 assault_theme = pygame.mixer.music.load("Great Ape Assault.mp3")
@@ -144,12 +146,13 @@ while running:
                         
     
     
-    #4 enemies
-    tank_x = -40
+    #4 tank
+    tank_x = 40
     tank_y = 550
     
-    chopper_x = -80
-    chopper_y = 150
+    #5 chopper 
+    chopper_x = 80
+    chopper_y = 160
     
     
     #5 graphics
@@ -157,6 +160,7 @@ while running:
     screen.blit(george_idle,(int(george_x),int(george_y)))
     screen.blit(tank,(tank_x,tank_y))
     screen.blit(chopper,(chopper_x,chopper_y))
+    # screen.blit(bullet,(60,450))
     pygame.display.flip()
     
     for row in range(len(level1)):
