@@ -5,7 +5,9 @@ resolution = (800,600)
 hitbox = 64
 one_block = 32
 
-hit_count = 0
+hit_count1 = 0
+hit_count2 = 0
+hit_count3 = 0
 
 pygame.init()
 
@@ -52,7 +54,6 @@ level1 = [
     "0000000000000000000000000",
     "0000000000000000000000000",
 ]
-
 
 running = True
 is_in_building = True
@@ -142,22 +143,50 @@ while running:
         george_x = 725
         v1 = 0
     
-    
+    # print(george_x)
     
     #3 destruction
-    if hit_key:
-        hit_count += 1
+    if hit_key and george_y != 475:
+        if george_x >= 86 and george_x <= 330:
+            hit_count1 += 1
+        elif george_x >= 314 and george_x <= 442:
+            hit_count2 += 1
+        elif george_x >= 602 and george_x <= 730:
+            hit_count3 += 1
     
-    if hit_count == 2:
+    
+    if hit_count1 == 2:
         if george_y >= 416:
             b_height = 0
         elif george_y < 416:
             b_height = 1
+            
+    if hit_count2 == 2:
+        if george_y >= 384:
+            b_height = 0
+        elif george_y < 384:
+            b_height = 1
+            
+    if hit_count3 == 2:
+        if george_y >= 448:
+            b_height = 0
+        elif george_y < 448:
+            b_height = 1
     
-    if hit_count == 3 and b_height == 0:
+    if hit_count1 == 3 and b_height == 0:
         building1 = pygame.image.load("building1_down.png")
-    elif hit_count == 3 and b_height == 1:
+    elif hit_count1 == 3 and b_height == 1:
         building1 = pygame.image.load("building1_up.png")
+        
+    if hit_count2 == 3 and b_height == 0:
+        building2 = pygame.image.load("building2_down.png")
+    elif hit_count2 == 3 and b_height == 1:
+        building2 = pygame.image.load("building2_up.png")
+        
+    if hit_count3 == 3 and b_height == 0:
+        building3 = pygame.image.load("trial.png")
+    elif hit_count3 == 3 and b_height == 1:
+        building3 = pygame.image.load("building1_up.png")
     
     #4 tank
     tank_x = 40
