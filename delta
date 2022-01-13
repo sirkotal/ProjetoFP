@@ -4,6 +4,7 @@ import random
 resolution = (800,600)
 hitbox = 64
 one_block = 32
+hit_count = 0
 
 pygame.init()
 
@@ -127,7 +128,6 @@ while running:
     
     if george_y != 475:
         george_x -= v1*frame_rate
-        
     if george_y > 475:
         george_y = 475
         v2 = 0
@@ -144,12 +144,17 @@ while running:
     
     
     #3 destruction
-    hit_count = 0
     if hit_key:
         hit_count += 1
-    if hit_count == 3:
-        building1 = pygame.image.load("building1.png")
-        pygame.display.update()
+    if hit_count == 2:
+        if george_y >= 416:
+            b_height = 0
+        elif george_y < 416:
+            b_height = 1
+    if hit_count == 3 and b_height == 0:
+        building1 = pygame.image.load("building_1.png")
+    elif hit_count == 3 and b_height == 1:
+        building1 = pygame.image.load("building_1(1).png")
     
     #4 tank
     tank_x = 40
