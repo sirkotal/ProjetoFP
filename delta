@@ -204,11 +204,10 @@ while running:
     if hit_count3 == 8:
         building3 = pygame.image.load("building3_heavy.png")
         
-
         
     
     #4 tank
-    tank_x = 40
+    tank_x = 0
     tank_y = 550
     
     #5 chopper 
@@ -223,8 +222,8 @@ while running:
     screen.blit(building3,(672,352))
     
     screen.blit(george_idle,(int(george_x),int(george_y)))
-    screen.blit(tank,(tank_x,tank_y))
-    screen.blit(chopper,(chopper_x,chopper_y))
+    screen.blit(tank,(int(tank_x),int(tank_y)))
+    screen.blit(chopper,(int(chopper_x),int(chopper_y)))
     # screen.blit(bullet,(60,450))
     pygame.display.flip()
     
