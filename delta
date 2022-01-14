@@ -31,6 +31,12 @@ bullet = pygame.image.load("bullet.png")
 george_x = 0
 george_y = 475
 
+tank_x = 0
+tank_y = 550
+
+chopper_x = 80
+chopper_y = 160
+
 v1 = 0
 v2 = 0
 level1 = [
@@ -207,12 +213,12 @@ while running:
         
     
     #4 tank
-    tank_x = 0
-    tank_y = 550
+    if hit_count1 >= 3:
+        tank_x += 0.1*frame_rate
     
     #5 chopper 
-    chopper_x = 80
-    chopper_y = 160
+    if hit_count1 >= 3:
+        chopper_x += 0.1*frame_rate
     
     
     #5 graphics
@@ -224,7 +230,6 @@ while running:
     screen.blit(george_idle,(int(george_x),int(george_y)))
     screen.blit(tank,(int(tank_x),int(tank_y)))
     screen.blit(chopper,(int(chopper_x),int(chopper_y)))
-    # screen.blit(bullet,(60,450))
     pygame.display.flip()
     
     
