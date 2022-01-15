@@ -34,8 +34,9 @@ george_y = 475
 tank_x = 0
 tank_y = 550
 
-chopper_x = 80
+chopper_x = -75
 chopper_y = 160
+v_chopper = 0
 
 v1 = 0
 v2 = 0
@@ -213,13 +214,27 @@ while running:
         
     
     #4 tank
-    if hit_count1 >= 3:
-        tank_x += 0.1*frame_rate
+    # if hit_count1 >= 3:
+    #     tank_x += 0.1*frame_rate
     
     #5 chopper 
-    if hit_count1 >= 3:
-        chopper_x += 0.1*frame_rate
+    if chopper_x > 0 and chopper_x < 800:
+        air_spawn = True
+    else:
+        air_spawn = False
     
+    if air_spawn == False:
+        if hit_count1 >= 3:
+            v_chopper = 0.05
+    
+    chopper_x += v_chopper*frame_rate
+    
+    if chopper_x < -75:
+        chopper_x = -75
+        v_chopper = 0
+    if chopper_x > 801:
+        chopper_x = 801
+        v_chopper = 0
     
     #5 graphics
     screen.blit(background,(0,0))
