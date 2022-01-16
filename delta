@@ -38,6 +38,10 @@ chopper_x = -75
 chopper_y = 160
 v_chopper = 0
 
+# bullet_x = chopper_x
+# bullet_y = chopper_y
+# va = 0.05
+
 v1 = 0
 v2 = 0
 level1 = [
@@ -48,22 +52,21 @@ level1 = [
     "0000000000000000000000000",
     "0000000000000000000000000",
     "0000000000003003000000000",
-    "0000000000002112000000000",
-    "0000003003002112000000000",
-    "0000002112002112000000000",
-    "0000002112002112000003003",
-    "0000002112002112000002111",
-    "0000002112002112000002111",
-    "0000002112002112000002111",
-    "0000002112002112000002111",
-    "0000002112002112000002111",
-    "0000002112002112000002111",
+    "0000000000002114000000000",
+    "0000003003002114000000000",
+    "0000002114002114000000000",
+    "0000002114002114000003003",
+    "0000002114002114000002111",
+    "0000002114002114000002111",
+    "0000002114002114000002111",
+    "0000002114002114000002111",
+    "0000002114002114000002111",
+    "0000002114002114000002111",
     "0000000000000000000000000",
     "0000000000000000000000000",
 ]
 
 running = True
-is_in_building = True
 clock = pygame.time.Clock()
 left_key = right_key = up_key = down_key = False
 
@@ -122,8 +125,16 @@ while running:
                         v2 = +0.08
                     else:
                         v2 = 0
+            elif level1[row][column] == "4":
+                if george_x >= column*32-58 and george_x <= column*32+6:
+                    if up_key:
+                        v2 = -0.08
+                    elif down_key:
+                        v2 = +0.08
+                    else:
+                        v2 = 0
             elif level1[row][column] == "3":
-                if george_x >= column*32-50 and george_x <= column*32+6:
+                if george_x >= column*32-58 and george_x <= column*32+6:
                     if george_y <= row*32:
                         george_y = row*32
                         v2 = 0
@@ -236,6 +247,7 @@ while running:
         chopper_x = 801
         v_chopper = 0
     
+    
     #5 graphics
     screen.blit(background,(0,0))
     screen.blit(building1,(192,288))
@@ -256,10 +268,14 @@ while running:
         counter = -1
         george_idle = pygame.image.load("george_idle.png")
     elif v2 != 0:
-        if counter == 1:
-            george_idle = pygame.image.load("george_climb.png")
-        elif counter == -1:
-            george_idle = pygame.image.load("george_climb2.png")
+        for row in range(len(level1)):
+            for column in range(len(level1[row])):
+                if level1[row][column] == "2":
+                    if george_x >= column*32-58 and george_x <= column*32+6:
+                        george_idle = pygame.image.load("george_climb.png")
+                elif level1[row][column] == "4":
+                    if george_x >= column*32-58 and george_x <= column*32+6:
+                        george_idle = pygame.image.load("george_climb2.png")
 
 
           
