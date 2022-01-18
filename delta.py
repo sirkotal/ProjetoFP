@@ -40,8 +40,7 @@ v_chopper = 0
 
 bullet_x = 100
 bullet_y = 160
-va = 0
-vb = 0
+v_trigger = 0
 
 v1 = 0
 v2 = 0
@@ -257,11 +256,11 @@ while running:
     if air_spawn == False:
         if hit_count1 >= 3:
             v_chopper = 0.05
-            va = 0.05
+            # v_trigger = 0.05
     
     chopper_x += v_chopper*frame_rate
-    bullet_x += v_chopper*frame_rate
-    bullet_y += va*frame_rate
+    # bullet_x += v_chopper*frame_rate
+    # bullet_y += v_trigger*frame_rate
     
     if chopper_x < -75:
         chopper_x = -75
