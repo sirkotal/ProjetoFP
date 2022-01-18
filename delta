@@ -226,18 +226,21 @@ while running:
     if hit_count1 >= 12:
         building1 = pygame.image.load("building1_destroyed.png")
         if george_y != 475:
-            george_y += 0.05*frame_rate
+            if george_x >= 134 and george_x <= 294:
+                george_y += 0.08*frame_rate
         
     if hit_count2 >= 12:
         building2 = pygame.image.load("building2_destroyed.png")
         if george_y != 475:
-            george_y += 0.05*frame_rate
+            if george_x >= 326 and george_x <= 486:
+                george_y += 0.08*frame_rate
         
             
     if hit_count3 >= 12:
         building3 = pygame.image.load("building3_destroyed.png")
         if george_y != 475:
-            george_y += 0.05*frame_rate
+            if george_x >= 614 and george_x <= 799:
+                george_y += 0.08*frame_rate
         
         
     
