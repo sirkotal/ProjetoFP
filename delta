@@ -38,9 +38,10 @@ chopper_x = -75
 chopper_y = 160
 v_chopper = 0
 
-# bullet_x = chopper_x
-# bullet_y = chopper_y
-# va = 0.05
+bullet_x = 100
+bullet_y = 160
+va = 0
+vb = 0
 
 v1 = 0
 v2 = 0
@@ -159,7 +160,7 @@ while running:
     if george_x > 725:
         george_x = 725
         v1 = 0
-    
+
     
     #3 destruction
     if hit_key and george_y != 475:
@@ -222,6 +223,22 @@ while running:
     if hit_count3 == 8:
         building3 = pygame.image.load("building3_heavy.png")
         
+    if hit_count1 >= 12:
+        building1 = pygame.image.load("building1_destroyed.png")
+        if george_y != 475:
+            george_y += 0.05*frame_rate
+        
+    if hit_count2 >= 12:
+        building2 = pygame.image.load("building2_destroyed.png")
+        if george_y != 475:
+            george_y += 0.05*frame_rate
+        
+            
+    if hit_count3 >= 12:
+        building3 = pygame.image.load("building3_destroyed.png")
+        if george_y != 475:
+            george_y += 0.05*frame_rate
+        
         
     
     #4 tank
@@ -237,8 +254,11 @@ while running:
     if air_spawn == False:
         if hit_count1 >= 3:
             v_chopper = 0.05
+            va = 0.05
     
     chopper_x += v_chopper*frame_rate
+    bullet_x += v_chopper*frame_rate
+    bullet_y += va*frame_rate
     
     if chopper_x < -75:
         chopper_x = -75
@@ -246,6 +266,7 @@ while running:
     if chopper_x > 801:
         chopper_x = 801
         v_chopper = 0
+    
     
     
     #5 graphics
@@ -257,6 +278,7 @@ while running:
     screen.blit(george_idle,(int(george_x),int(george_y)))
     screen.blit(tank,(int(tank_x),int(tank_y)))
     screen.blit(chopper,(int(chopper_x),int(chopper_y)))
+    # screen.blit(bullet,(bullet_x,bullet_y))
     pygame.display.flip()
     
     
