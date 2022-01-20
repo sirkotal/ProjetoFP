@@ -43,7 +43,6 @@ traj4 = 0
 traj5 = 0
 traj6 = 0
 
-measure = pygame.image.load("measurer.png")
 
 # great_ape = pygame.image.load("great_ape.png")
 # assault_theme = pygame.mixer.music.load("Kyoufu no Ginyu Tokusentai.mp3")
