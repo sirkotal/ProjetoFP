@@ -25,6 +25,7 @@ Reimplementation of  Rampage
 
 - Pygame
 - random
+- math
 
 ### Tarefas
 
