@@ -1,5 +1,6 @@
 import pygame
 import random
+from math import dist
 
 resolution = (800,600)
 hitbox = 64
@@ -22,7 +23,18 @@ pygame.display.flip()
 george_idle = pygame.image.load("george_idle2.png")
 tank = pygame.image.load("tank.png")
 chopper = pygame.image.load("helicopter.png")
-bullet = pygame.image.load("bullet.png")
+chopper_r = pygame.image.load("helicopter.png")
+chopper_l = pygame.image.load("helicopter2.png")
+side_count = 1
+
+bullet1 = pygame.image.load("bullet.png")
+bullet2 = pygame.image.load("bullet.png")
+bullet3 = pygame.image.load("bullet.png")
+bullet4 = pygame.image.load("bullet.png")
+bullet5 = pygame.image.load("bullet.png")
+bullet6 = pygame.image.load("bullet.png")
+
+measure = pygame.image.load("bullet.png")
 
 # great_ape = pygame.image.load("great_ape.png")
 # assault_theme = pygame.mixer.music.load("Great Ape Assault.mp3")
@@ -34,13 +46,14 @@ george_y = 475
 tank_x = 0
 tank_y = 550
 
-chopper_x = -75
+chopper_x = -75     #-75
 chopper_y = 160
 v_chopper = 0
 
+bullet_list = [[120,185],[240,185],[360,185],[480,185],[600,185],[720,185]]
 bullet_x = 100
 bullet_y = 160
-v_trigger = 0
+v_trigger = 0.05 # 0.05
 
 v1 = 0
 v2 = 0
@@ -255,20 +268,22 @@ while running:
     
     if air_spawn == False:
         if hit_count1 >= 3:
-            v_chopper = 0.05
-            # v_trigger = 0.05
+            if side_count == 1:
+                chopper = chopper_r
+                v_chopper = 0.05
+            elif side_count == -1:
+                chopper = chopper_l
+                v_chopper = -0.05
+            
     
     chopper_x += v_chopper*frame_rate
-    # bullet_x += v_chopper*frame_rate
-    # bullet_y += v_trigger*frame_rate
     
-    if chopper_x < -75:
-        chopper_x = -75
-        v_chopper = 0
+    if chopper_x < -150:
+        side_count = 1
     if chopper_x > 801:
-        chopper_x = 801
-        v_chopper = 0
-    
+        side_count = -1
+        
+    #4.5 bullets
     
     
     #5 graphics
@@ -280,9 +295,15 @@ while running:
     screen.blit(george_idle,(int(george_x),int(george_y)))
     screen.blit(tank,(int(tank_x),int(tank_y)))
     screen.blit(chopper,(int(chopper_x),int(chopper_y)))
-    # screen.blit(bullet,(bullet_x,bullet_y))
+    if chopper_x >= bullet_list[0][0]-45 and chopper_x <= bullet_list[0][0]-35:
+        screen.blit(bullet1,(bullet_list[0][0],bullet_list[0][1]))
+        bullet_list[0][0] += v_trigger*frame_rate
+        bullet_list[0][1] += v_trigger*frame_rate
+    if chopper_x >= bullet_list[1][0]-45 and chopper_x >= bullet_list[1][0]-35:
+        screen.blit(bullet2,(bullet_list[1][0],bullet_list[1][1]))
+        bullet_list[1][0] += v_trigger*frame_rate
+        bullet_list[1][1] += v_trigger*frame_rate
     pygame.display.flip()
-    
     
 
     if v1 > 0 and george_y == 475:
