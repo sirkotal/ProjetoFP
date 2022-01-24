@@ -1,0 +1,152 @@
+import pygame
+
+resolution = (800,600)
+hitbox = 64
+one_block = 32
+
+pygame.init()
+
+screen = pygame.display.set_mode(resolution)
+
+background = pygame.image.load("city_v2.png")
+pygame.display.flip()
+
+george_idle = pygame.image.load("george_idle.png")
+great_ape = pygame.image.load("great_ape.png")
+assault_theme = pygame.mixer.music.load("Great Ape Assault.mp3")
+# pygame.mixer.music.play(loops=-1)
+george_x = 0
+george_y = 475
+
+v1 = 0
+v2 = 0
+level1 = [
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+    "0000000000002112000000000",
+    "0000000000002112000000000",
+    "0000002112002112000000000",
+    "0000002112002112000000000",
+    "0000002112002112000000011",
+    "0000002112002112000000111",
+    "0000002112002112000000111",
+    "0000002112002112000000111",
+    "0000002112002112000002111",
+    "0000002112002112000002111",
+    "0000000000000000000000000",
+    "0000000000000000000000000",
+]
+
+
+running = True
+is_in_building = True
+clock = pygame.time.Clock()
+left_key = right_key = up_key = down_key = False
+
+while running:
+
+    #1 input/
+    jump_key = False
+    hit_key = False
+    for ev in pygame.event.get():
+        if ev.type == pygame.QUIT:
+            running = False
+        elif ev.type == pygame.KEYDOWN:
+            if ev.key == pygame.K_ESCAPE:
+                running = False
+            elif ev.key == pygame.K_LEFT:
+                left_key = True
+            elif ev.key == pygame.K_RIGHT:
+                right_key = True
+            elif ev.key == pygame.K_UP:
+                up_key == True
+            elif ev.key == pygame.K_DOWN:
+                down_key == True
+            elif ev.key == pygame.K_SPACE:
+                if jump_key == False:
+                    jump_key == True
+                elif jump_key == True:
+                    jump_key == False
+            elif ev.key == pygame.K_RETURN:
+                hit_key = True
+        elif ev.type == pygame.KEYUP:
+            if ev.key == pygame.K_LEFT:
+                left_key = False
+            elif ev.key == pygame.K_RIGHT:
+                right_key = False
+            elif ev.key == pygame.K_UP:
+                up_key == False
+            elif ev.key == pygame.K_DOWN:
+                down_key == False
+            elif ev.key == pygame.K_RETURN:
+                hit_key = False
+    
+    
+    
+    #2 physics, enemies...
+    frame_rate = clock.tick()
+    if right_key:
+        v1 += 0.01
+    elif left_key:
+        v1 -= 0.01
+    else:
+        v1 = 0
+    
+    for row in range(len(level1)):
+        for column in range(len(level1[row])):
+            if level1[row][column] == "2" and jump_key == True:
+                is_in_building = True
+            else:
+                is_in_building = False
+                
+    
+    
+    if is_in_building:
+        v1 = 0
+        if up_key:
+            v2 -= 0.4
+        elif down_key:
+            v2 += 0.4
+        else:
+            v2 == 0
+    
+    george_x += v1*frame_rate
+    george_y += v2*frame_rate
+    previous_y = george_y
+    
+    if george_y > 475:
+        george_y = 475
+        v2 = 0
+    if george_x < -8:
+        george_x = -8
+        v1 = 0
+    if george_x > 725:
+        george_x = 725
+        v1 = 0
+        
+        
+    
+    
+    
+    #3 graphics
+    screen.blit(background,(0,0))
+    screen.blit(george_idle,(int(george_x),int(george_y)))
+    pygame.display.flip()
+    
+    for row in range(len(level1)):
+        for column in range(len(level1[row])):
+            if level1[row][column] == "1" or level1[row][column] == "2":
+                pygame.draw.rect(background,pygame.Color(255,182,193),(column*32,row*32,32,32))
+
+
+
+
+
+        
+        
+pygame.quit()
