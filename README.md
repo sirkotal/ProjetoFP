@@ -34,4 +34,4 @@ Reimplementation of  Rampage
 3. Ler teclas, permitir a movimentação do monstro e dos inimigos e a destruição dos edifícios.
 4. Verificar se o jogador concluiu o nível com sucesso
 
-- Atualizado a última vez em 07/12/2021
+- Atualizado a última vez em 24/01/2022
